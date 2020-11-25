@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
     <link rel="stylesheet" href="./css/styles.css">
     <title>Show list of movie informations</title>
 </head>
@@ -12,15 +13,23 @@
 
     <div id="app">
         <!-- search zone -->
-        <input @keyup.enter="requestmovie()" v-model='research' type="text" placeholder="search">
-        <button @click="requestmovie()">Search</button>
+        <input @keyup.enter="request()" v-model='research' type="text" placeholder="search">
+        <button @click="request()">Search</button>
         <!-- result zone -->
         <ul>
             <li v-for="movie in catalog">
                 <p> Titolo: {{ movie.title }}</p>
                 <p> Titolo originale: {{movie.original_title}}</p>
                 <p> lingua : {{ movie.original_language }} </p>
-                <p> voto : {{movie.vote_average}} </p>
+                <p> voto : <i v-for="n in getvote(movie.vote_average)" class="fas fa-star"></i>
+                 <i v-for=" n in 5 - getvote(movie.vote_average)" class="far fa-star"></i></p>
+            </li>
+            <li v-for="series in catalogtv">
+                <p> Titolo: {{ series.name}}</p>
+                <p> Titolo originale: {{series.original_name}}</p>
+                <p> lingua : {{ series.origin_country }} </p>
+                <p> voto : <i v-for="n in getvote(series.vote_average)" class="fas fa-star"></i>
+                 <i v-for=" n in 5 - getvote(series.vote_average)" class="far fa-star"></i></p>
             </li>
         </ul>
 
