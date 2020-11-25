@@ -10,13 +10,14 @@ const app = new Vue({
         requestmovie() {
             axios.get('https://api.themoviedb.org/3/search/movie', {
                 params: {
-                    apy_key: 'e99307154c6dfb0b4750f6603256716d',
+                    api_key: 'e99307154c6dfb0b4750f6603256716d',
                     query: this.research ,
                     language:'it-IT',
                 },
             })
             .then( response => {
-            console.log(response.data.results);
+            this.catalog = response.data.results;
+            console.log(this.catalog);
             })
             .catch( error => {
             console.log(error);

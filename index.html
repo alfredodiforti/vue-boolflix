@@ -5,14 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+    <link rel="stylesheet" href="./css/styles.css">
     <title>Show list of movie informations</title>
 </head>
 <body>
 
     <div id="app">
         <!-- search zone -->
-        <input v-model='research' type="text" placeholder="search">
+        <input @keyup.enter="requestmovie()" v-model='research' type="text" placeholder="search">
         <button @click="requestmovie()">Search</button>
+        <!-- result zone -->
+        <ul>
+            <li v-for="movie in catalog">
+                <p> Titolo: {{ movie.title }}</p>
+                <p> Titolo originale: {{movie.original_title}}</p>
+                <p> lingua : {{ movie.original_language }} </p>
+                <p> voto : {{movie.vote_average}} </p>
+            </li>
+        </ul>
 
 
 
