@@ -6,3 +6,7 @@
 li {
     margin-top: 20px;
 }
+
+li span img {
+    max-width: 15px;
+}

@@ -20,14 +20,18 @@
             <li v-for="movie in catalog">
                 <p> Titolo: {{ movie.title }}</p>
                 <p> Titolo originale: {{movie.original_title}}</p>
-                <p> lingua : {{ movie.original_language }} </p>
+                <span v-if="movie.original_language === 'it'"> lingua : <img src="./img/it.png" alt="it"> </span>
+                <span v-else-if="movie.original_language === 'en'"> lingua : <img src="./img/en.png" alt="en"> </span>
+                <span v-else> lingua : {{ movie.original_language}} </span>
                 <p> voto : <i v-for="n in getvote(movie.vote_average)" class="fas fa-star"></i>
                  <i v-for=" n in 5 - getvote(movie.vote_average)" class="far fa-star"></i></p>
             </li>
             <li v-for="series in catalogtv">
                 <p> Titolo: {{ series.name}}</p>
                 <p> Titolo originale: {{series.original_name}}</p>
-                <p> lingua : {{ series.origin_country }} </p>
+                <span v-if="series.origin_country === 'it'"> lingua : <img src="./img/it.png" alt="it"> </span>
+                <span v-else-if="series.origin_country === 'en'"> lingua : <img src="./img/en.png" alt="en"> </span>
+                <p v-else> lingua : {{ series.origin_country }} </p>
                 <p> voto : <i v-for="n in getvote(series.vote_average)" class="fas fa-star"></i>
                  <i v-for=" n in 5 - getvote(series.vote_average)" class="far fa-star"></i></p>
             </li>
