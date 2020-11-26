@@ -18,6 +18,7 @@
         <!-- result zone -->
         <ul>
             <li v-for="movie in catalog">
+                <img :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title">
                 <p> Titolo: {{ movie.title }}</p>
                 <p> Titolo originale: {{movie.original_title}}</p>
                 <span v-if="movie.original_language === 'it'"> lingua : <img src="./img/it.png" alt="it"> </span>
@@ -27,6 +28,7 @@
                  <i v-for=" n in 5 - getvote(movie.vote_average)" class="far fa-star"></i></p>
             </li>
             <li v-for="series in catalogtv">
+                <img :src="`https://image.tmdb.org/t/p/w500${series.poster_path}`" :alt="series.name">
                 <p> Titolo: {{ series.name}}</p>
                 <p> Titolo originale: {{series.original_name}}</p>
                 <span v-if="series.origin_country === 'it'"> lingua : <img src="./img/it.png" alt="it"> </span>
