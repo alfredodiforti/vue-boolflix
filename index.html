@@ -25,8 +25,14 @@
         <main class="result">
             <ul>
                 <li class="album" v-for="movie in catalog">
-                    <img class="poster" v-if="movie.poster_path" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title">
+                    <div class="contimg">
+                        <div class="description">
+                            <p>{{movie.overview}}</p>
+                        </div>
+                        <img class="poster" v-if="movie.poster_path" :src="`https://image.tmdb.org/t/p/w500${movie.poster_path}`" :alt="movie.title">
                     <img class="poster" v-else src="https://www.altavod.com/assets/images/poster-placeholder.png" alt="notitmage">
+                    </div>
+                    
                     <p class="title">{{ movie.title }}</p>
                     <p class="subtitle">{{movie.original_title}}</p>
                     <p class="details updimension"><i v-for="n in getvote(movie.vote_average)" class="fas fa-star"></i>
@@ -38,16 +44,20 @@
                     
                     
                 <li class="album" v-for="series in catalogtv">
+                    <div class="contimg">
+                        <div class="description">
+                            <p>{{series.overview}}</p>
+                        </div>
                     <img class="poster" v-if="series.poster_path" :src="`https://image.tmdb.org/t/p/w500${series.poster_path}`" :alt="series.name">
                     <img class="poster" v-else src="https://www.altavod.com/assets/images/poster-placeholder.png" alt="notitmage">
+                    </div>
                     <p class="title">{{ series.name}}</p>
                     <p class="subtitle"> Titolo originale: {{series.original_name}}</p>
-                    <p class="details"><i v-for="n in getvote(series.vote_average)" class="fas fa-star"></i>
+                    <p class="details updimension"><i v-for="n in getvote(series.vote_average)" class="fas fa-star"></i>
                     <i v-for=" n in 5 - getvote(series.vote_average)" class="far fa-star"></i></p>
-                    <span  class="details" v-if="series.origin_country === 'it'"><img class="flag" src="./img/it.png" alt="it"> </span>
-                    <span class="details" v-else-if="series.origin_country === 'en'"><img class="flag" src="./img/en.png" alt="en"> </span>
-                    <p class="details" v-else>{{ series.origin_country }} </p>
-                    
+                    <span  class="details updimension" v-if="series.origin_country === 'it'"><img class="flag" src="./img/it.png" alt="it"> </span>
+                    <span class="details updimension" v-else-if="series.origin_country === 'en'"><img class="flag" src="./img/en.png" alt="en"> </span>
+                    <p class="details" v-else>{{ series.origin_country }} </p>                   
                 </li>
             </ul>
         </main>
