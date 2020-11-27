@@ -29,24 +29,25 @@
                     <img class="poster" v-else src="https://www.altavod.com/assets/images/poster-placeholder.png" alt="notitmage">
                     <p class="title">{{ movie.title }}</p>
                     <p class="subtitle">{{movie.original_title}}</p>
-                    <span v-if="movie.original_language === 'it'" > lingua : <img class="flag" src="./img/it.png" alt="it"> </span>
-                    <span v-else-if="movie.original_language === 'en'" > lingua : <img class="flag" src="./img/en.png" alt="en"> </span>
-                    <span v-else> lingua : {{ movie.original_language}} </span>
-                    <p> voto : <i v-for="n in getvote(movie.vote_average)" class="fas fa-star"></i>
+                    <p class="details updimension"><i v-for="n in getvote(movie.vote_average)" class="fas fa-star"></i>
                      <i v-for=" n in 5 - getvote(movie.vote_average)" class="far fa-star"></i></p>
-                </li>
-            </ul>
-            <ul>
+                     <span class="details updimension" v-if="movie.original_language === 'it'" ><img class="flag" src="./img/it.png" alt="it"> </span>
+                    <span class="details updimension" v-else-if="movie.original_language === 'en'" ><img class="flag" src="./img/en.png" alt="en"> </span>
+                    <span class="details" v-else>{{ movie.original_language}} </span>
+                    </li>
+                    
+                    
                 <li class="album" v-for="series in catalogtv">
                     <img class="poster" v-if="series.poster_path" :src="`https://image.tmdb.org/t/p/w500${series.poster_path}`" :alt="series.name">
                     <img class="poster" v-else src="https://www.altavod.com/assets/images/poster-placeholder.png" alt="notitmage">
-                    <p>{{ series.name}}</p>
-                    <p> Titolo originale: {{series.original_name}}</p>
-                    <span v-if="series.origin_country === 'it'"> lingua : <img class="flag" src="./img/it.png" alt="it"> </span>
-                    <span v-else-if="series.origin_country === 'en'"> lingua : <img class="flag" src="./img/en.png" alt="en"> </span>
-                    <p v-else> lingua : {{ series.origin_country }} </p>
-                    <p> voto : <i v-for="n in getvote(series.vote_average)" class="fas fa-star"></i>
-                     <i v-for=" n in 5 - getvote(series.vote_average)" class="far fa-star"></i></p>
+                    <p class="title">{{ series.name}}</p>
+                    <p class="subtitle"> Titolo originale: {{series.original_name}}</p>
+                    <p class="details"><i v-for="n in getvote(series.vote_average)" class="fas fa-star"></i>
+                    <i v-for=" n in 5 - getvote(series.vote_average)" class="far fa-star"></i></p>
+                    <span  class="details" v-if="series.origin_country === 'it'"><img class="flag" src="./img/it.png" alt="it"> </span>
+                    <span class="details" v-else-if="series.origin_country === 'en'"><img class="flag" src="./img/en.png" alt="en"> </span>
+                    <p class="details" v-else>{{ series.origin_country }} </p>
+                    
                 </li>
             </ul>
         </main>
